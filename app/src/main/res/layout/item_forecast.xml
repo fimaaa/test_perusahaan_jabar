@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    >
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_day_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sat"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_time_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sat"/>
+    <ImageView
+        android:id="@+id/iv_weather_forecast"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/cloud_logo"
+        android:contentDescription="@string/image_weather_this_layout" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_temperature_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/_12_Celsius"
+        />
+
+</LinearLayout>

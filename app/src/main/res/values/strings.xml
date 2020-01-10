@@ -1,0 +1,24 @@
+<resources>
+
+    <string name="username">UserName</string>
+    <string name="code_zip">Code ZIP</string>
+    <string name="pemisah">:</string>
+    <string name="input_data">Input Data</string>
+    <string name="application_n_check_weather">APPLICATION \n CHECK WEATHER</string>
+    <string name="copyright_fimaaa_paul">Copyright @fimaaa_paul</string>
+    <string name="_12_Celsius">%1$d℃</string>
+    <string name="greeting_user">Selamat %1$s, %2$s</string>
+    <string name="location_condition">Anda Menginputkan Kode Pos %1$s, dan aplikasi mendeteksi kode pos untuk kota %2$s </string>
+    <string name="weather_condition"><u>%1$s</u></string>
+    <string name="weather_condition_detail">Cuaca saat ini %1$s, dengan detail cuaca adalah %2$s</string>
+    <string name="detail_info">Detail Info User</string>
+    <string name="link_image_openweather">http://openweathermap.org/img/wn/%1$s@2x.png</string>
+    <string name="something_wrong">Something went wrong, please try again</string>
+    <string name="sat">SAT</string>
+    <string name="image_weather_this_layout">Image Weather This Layout</string>
+    <string name="city">City</string>
+    <string name="two_dots">:</string>
+    <string name="detail_weather">Detail Weather</string>
+    <string name="country">Country</string>
+    <string name="coordinat">Coordinat</string>
+</resources>
