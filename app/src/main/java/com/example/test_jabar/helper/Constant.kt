@@ -17,6 +17,8 @@ class Constant {
         val DAYTIME_MALAM = "Malam"
         val DAYTIME_UNKNOWN = "Jalan"
 
+        val DELAY_LOADING_VIEW = 1000L
+
         val BUNDLE_NAMEUSER_TEXT = "bundle_nameuser_text"
         val BUNDLE_ZIPCODE_TEXT  = "bundle_zipcode_text"
     }

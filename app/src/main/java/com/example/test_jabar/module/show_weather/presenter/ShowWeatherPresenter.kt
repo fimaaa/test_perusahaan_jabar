@@ -82,7 +82,6 @@ class ShowWeatherPresenter(private val mContext:Activity, private val mView:Show
                     }else{
                         mView.setViewFailed(e.message)
                     }
-                    mContext.finish()
                 }
 
                 override fun onComplete() {
@@ -98,13 +97,9 @@ class ShowWeatherPresenter(private val mContext:Activity, private val mView:Show
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<Forecast5Response>() {
                 override fun onNext(responseServer: Forecast5Response) {
-                    if (responseServer.list != null) {
-                        mView.setForecast5(responseServer.list)
-                    }
+                    mView.setForecast5(responseServer.list,null)
                 }
                 override fun onError(e: Throwable) {
-                    println("onError hit API Message =  ${e.message}")
-                    println("onError hit API Cause =  ${e.cause}")
                     if (e is HttpException) {
                         val body =
                             e.response()!!.errorBody()
@@ -113,13 +108,13 @@ class ShowWeatherPresenter(private val mContext:Activity, private val mView:Show
                             gson.getAdapter(ErrorResponse::class.java)
                         try {
                             val errorParser: ErrorResponse = adapter.fromJson(body!!.string())
-                            mView.setViewFailed(errorParser.message)
+                            mView.setForecast5(null,errorParser.message)
                         } catch (e: IOException) {
-                            mView.setViewFailed(e.message)
                             e.printStackTrace()
+                            mView.setForecast5(null,e.message)
                         }
                     }else{
-                        mView.setViewFailed(e.message)
+                        mView.setForecast5(null,e.message)
                     }
                 }
 

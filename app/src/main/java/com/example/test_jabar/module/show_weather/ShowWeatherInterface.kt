@@ -26,7 +26,7 @@ interface ShowWeatherInterface {
             coordinat:Coord?,
             detailWeather:String
         )
-        fun setForecast5(forecast:MutableList<Forecast?>)
+        fun setForecast5(forecast:MutableList<Forecast?>?,message: String?)
 
         fun setViewFailed(message:String?)
 
