@@ -42,6 +42,9 @@ data class CurrentWeatherResponse(
     val name: String? = null,
 
     @field:SerializedName("cod")
-    val cod: Int? = null
+    val cod: Int? = null,
+
+    @field:SerializedName("rain")
+    val rain: Rain? = null
 
 )

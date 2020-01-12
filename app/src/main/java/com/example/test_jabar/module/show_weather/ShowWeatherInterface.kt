@@ -24,7 +24,13 @@ interface ShowWeatherInterface {
             zipCode: String,
             city: String,
             coordinat:Coord?,
-            detailWeather:String
+            detailWeather:String,
+            maxTemperature:String,
+            minTemperature:String,
+            windSpeed:String?,
+            cloudness:String?,
+            pressure:String?,
+            rainPercentage:String?
         )
         fun setForecast5(forecast:MutableList<Forecast?>?,message: String?)
 

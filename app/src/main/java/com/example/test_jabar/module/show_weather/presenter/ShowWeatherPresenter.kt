@@ -45,6 +45,13 @@ class ShowWeatherPresenter(private val mContext:Activity, private val mView:Show
                         val temperature = mContext.getString(R.string._12_Celsius,responseServer.main?.temp?.toInt())
                         val coordinat = responseServer.coord
                         val detailWeather = weatherNow[0].description?:"Unknown"
+                        val maxTemperature = mContext.getString(R.string._12_Celsius,responseServer.main?.tempMax?.toInt())
+                        val minTemperature = mContext.getString(R.string._12_Celsius,responseServer.main?.tempMin?.toInt())
+                        val windSpeed = mContext.getString(R.string.wind_speed,responseServer.wind?.speed?.toInt())
+                        val cloudness = mContext.getString(R.string.cloudiness_percentage,responseServer.clouds?.all)
+                        val pressure = mContext.getString(R.string.pressure_variabel,responseServer.main?.pressure?.toInt())
+                        val rainPercentage = mContext.getString(R.string.rain_percentage,responseServer.rain?.jsonMember3h?.toInt())
+
                         mView.setWeatherNow(
                             urlImage,
                             temperature,
@@ -61,7 +68,13 @@ class ShowWeatherPresenter(private val mContext:Activity, private val mView:Show
                             zipCode,
                             cityName,
                             coordinat,
-                            detailWeather
+                            detailWeather,
+                            maxTemperature,
+                            minTemperature,
+                            windSpeed,
+                            cloudness,
+                            pressure,
+                            rainPercentage
                         )
                     }
                 }

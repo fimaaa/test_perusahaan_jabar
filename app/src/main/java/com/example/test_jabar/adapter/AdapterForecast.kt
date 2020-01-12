@@ -29,12 +29,18 @@ class AdapterForecast(private val mContext: Context, private val listForecast:Mu
         val data = listForecast[position]
         holder.itemView.tv_day_forecast.text = Util.dateToDay(data?.dtTxt)
         holder.itemView.tv_time_forecast.text = Util.dateToTIME(data?.dtTxt)
+        holder.itemView.tv_windpressure_forecast.text = mContext.getString(R.string.wind_speed,
+            data?.wind?.speed?.toInt())
+        holder.itemView.tv_clodiness_forecast.text = mContext.getString(R.string.cloudiness_percentage,
+            data?.clouds?.all
+        )
         val urlImage = mContext.getString(R.string.link_image_openweather,
             data?.weather?.get(0)?.icon ?:"04n")
         Glide.with(mContext)
             .applyDefaultRequestOptions(Util.getRequestOption())
             .load(urlImage)
             .into(holder.itemView.iv_weather_forecast)
+        holder.itemView.tv_weather_forecast.text = data?.weather?.get(0)?.main
         holder.itemView.tv_temperature_forecast.text = mContext.getString(R.string._12_Celsius,data?.main?.temp?.toInt())
     }
 }

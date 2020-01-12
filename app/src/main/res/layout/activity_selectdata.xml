@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/greyish"
+    android:background="@android:color/white"
     tools:context=".module.select_zip.view.SelectDataActivity">
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"

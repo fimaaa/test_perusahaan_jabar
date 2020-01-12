@@ -74,23 +74,39 @@ class ShowWeatherActivity:AppCompatActivity(), ShowWeatherInterface.View ,
     }
 
     @SuppressLint("InflateParams", "SetTextI18n")
-    override fun initBottomSheetDialog(weatherImage: String,weatherText:String,country:String, zipCode: String, city: String,coordinat:Coord?,detailWeather:String){
+    override fun initBottomSheetDialog(
+        weatherImage: String,
+        weatherText:String,
+        country:String,
+        zipCode: String,
+        city: String,
+        coordinat:Coord?,
+        detailWeather:String,
+        maxTemperature:String,
+        minTemperature:String,
+        windSpeed:String?,
+        cloudness:String?,
+        pressure:String?,
+        rainPercentage:String?
+        ){
         view = layoutInflater.inflate(R.layout.sheet_detailuser, null)
         bottomSheetDetail = BottomSheetDialog(this)
         bottomSheetDetail.setContentView(view)
         bottomSheetDetail.setCanceledOnTouchOutside(true)
         bottomSheetDetail.setCancelable(true)
-        Glide.with(this)
-            .applyDefaultRequestOptions(Util.getRequestOption())
-            .load(weatherImage)
-//            .signature(ObjectKey())
-//            .diskCacheStrategy(DiskCacheStrategy.NONE)
-//            .skipMemoryCache(true)
-            .into(view.iv_weather_detail)
-        view.tv_weather_detail.text = weatherText
+
+        view.tv_windspeed_detail.text = windSpeed
+        view.tv_clodiness_detail.text = cloudness
+        view.tv_pressure_detail.text = pressure
+        if(rainPercentage != null){
+            view.tv_rainpercentage_detail.text = rainPercentage
+            view.tv_rainpercentage_detail.visibility = View.VISIBLE
+        }
         view.tv_country_detail.text = country
         view.tv_city_detail.text = "$city($zipCode)"
         view.tv_coordinat_detail.text = coordinat.toString()
+        view.tv_tempmin_detail.text = minTemperature
+        view.tv_tempmax_detail.text = maxTemperature
         view.tv_coordinat_detail.setOnClickListener {
             val urlString = "geo:${coordinat?.lat},${coordinat?.lon}"
             println("URLString $urlString")
@@ -106,7 +122,7 @@ class ShowWeatherActivity:AppCompatActivity(), ShowWeatherInterface.View ,
     }
 
     @SuppressLint("SetTextI18n")
-    override fun setWeatherNow(weatherImage: String, temperature:String, dayTime: String, userName: String,weatherText:String, zipCode:String, city: String){
+    override fun setWeatherNow(weatherImage: String, temperature:String, dayTime: String, userName: String, weatherText:String, zipCode:String, city: String){
         Glide.with(this)
             .applyDefaultRequestOptions(Util.getRequestOption())
             .load(weatherImage)
@@ -116,7 +132,8 @@ class ShowWeatherActivity:AppCompatActivity(), ShowWeatherInterface.View ,
             .into(iv_weather_now)
         tv_temperature_now.text = temperature
         tv_greeting_show.text = getString(R.string.greeting_user,dayTime,userName)
-        tv_location_show.text = getString(R.string.location_condition,zipCode,city)
+//        tv_location_show.text = getString(R.string.location_condition,zipCode,city)
+        tv_location_show.text = "$city ($zipCode)"
         tv_weathercondition_show.text = getString(R.string.weather_condition,weatherText)
         swipe_layout_showweather.isRefreshing = false
         Handler().postDelayed({
@@ -130,16 +147,21 @@ class ShowWeatherActivity:AppCompatActivity(), ShowWeatherInterface.View ,
         if(forecast != null) {
             spin_kit_forecast.visibility = View.GONE
             val adapter = AdapterForecast(this, forecast)
+            adapter.setHasStableIds(true)
             rcv_weather_5days.adapter = adapter
+            rcv_weather_5days.setHasFixedSize(true)
+            rcv_weather_5days.setItemViewCacheSize(20)
         }else{
             spin_kit_forecast.visibility = View.GONE
             rcv_weather_5days.adapter = null
             tv_errorforecast.text = message?:getString(R.string.something_wrong)
             btn_errorforecast.setOnClickListener {
                 spin_kit_forecast.visibility = View.VISIBLE
-                tv_errorforecast.visibility = View.VISIBLE
-                btn_errorforecast.visibility = View.VISIBLE
-                mPresenter.onGetForecast5()
+                tv_errorforecast.visibility = View.GONE
+                btn_errorforecast.visibility = View.GONE
+                Handler().postDelayed({
+                    mPresenter.onGetForecast5()
+                }, Constant.DELAY_LOADING_VIEW)
             }
             tv_errorforecast.visibility = View.VISIBLE
             btn_errorforecast.visibility = View.VISIBLE
@@ -161,7 +183,10 @@ class ShowWeatherActivity:AppCompatActivity(), ShowWeatherInterface.View ,
 //            mPresenter.onGetWeatherNow()
 //        }, 2000)
         spin_kit_forecast.visibility = View.VISIBLE
-        mPresenter.onGetWeatherNow()
-        mPresenter.onGetForecast5()
+        Handler().postDelayed({
+            mPresenter.onGetWeatherNow()
+            mPresenter.onGetForecast5()
+        }, Constant.DELAY_LOADING_VIEW)
+
     }
 }

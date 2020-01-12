@@ -23,4 +23,10 @@
     <string name="coordinat">Coordinat</string>
     <string name="refresh_forecast">Refresh Forecast</string>
     <string name="et_mus_filled">%1$s Must Be Filled</string>
+    <string name="temperature_min">Minimum Temperature</string>
+    <string name="maximal_temperature">Maximal Temperature</string>
+    <string name="wind_speed">%1$d m/s</string>
+    <string name="cloudiness_percentage">%1$d%%</string>
+    <string name="rain_percentage">%1$d%%</string>
+    <string name="pressure_variabel">%1$d hpa</string>
 </resources>
