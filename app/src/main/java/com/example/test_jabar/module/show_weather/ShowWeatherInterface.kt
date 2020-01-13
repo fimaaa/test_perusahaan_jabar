@@ -1,12 +1,12 @@
 package com.example.test_jabar.module.show_weather
 
-import com.example.test_cermati.base.BasePresenter
-import com.example.test_cermati.base.BaseView
+import com.example.test_jabar.base.BasePresenter
+import com.example.test_jabar.base.BaseView
 import com.example.test_jabar.data.model.Coord
 import com.example.test_jabar.data.model.Forecast
 
 interface ShowWeatherInterface {
-    interface View: BaseView<Presenter>{
+    interface View: BaseView<Presenter> {
 
         fun setWeatherNow(
             weatherImage: String,
@@ -37,7 +37,7 @@ interface ShowWeatherInterface {
         fun setViewFailed(message:String?)
 
     }
-    interface Presenter: BasePresenter<View>{
+    interface Presenter: BasePresenter<View> {
         fun onGetWeatherNow()
 
         fun onGetForecast5()

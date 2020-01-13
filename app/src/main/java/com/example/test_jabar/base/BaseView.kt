@@ -1,4 +1,4 @@
-package com.example.test_cermati.base
+package com.example.test_jabar.base
 
 interface BaseView<P> {
     fun initPresenter(): P
